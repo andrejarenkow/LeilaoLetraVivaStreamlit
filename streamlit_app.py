@@ -144,6 +144,9 @@ dados.sort_values(['lances', 'preço', 'visitas', ], ascending=False, inplace=Tr
 dados = dados.set_index('descrição')
 dados['valor_vendido'] = dados['lote vendido']*dados['preço']
 dados['lances'] = dados['lances'].astype(int)
+dados['lancado'] = dados['lance'].apply(lambda x: 1 if x > 1 else 0)
+dados['valor_vendido'] = dados['lancado']*dados['preço']
+
 
 col1, col2 = st.columns([1,3])
 
