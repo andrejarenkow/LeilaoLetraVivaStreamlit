@@ -1,4 +1,4 @@
-#Importação das bibliotecas
+a#Importação das bibliotecas
 import numpy as np
 import pandas as pd
 import plotly
@@ -144,7 +144,7 @@ dados.sort_values(['lances', 'preço', 'visitas', ], ascending=False, inplace=Tr
 dados = dados.set_index('descrição')
 dados['valor_vendido'] = dados['lote vendido']*dados['preço']
 dados['lances'] = dados['lances'].astype(int)
-dados['lancado'] = dados['lance'].apply(lambda x: 1 if x > 1 else 0)
+dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
 dados['valor_vendido'] = dados['lancado']*dados['preço']
 
 
