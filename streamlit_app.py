@@ -151,9 +151,14 @@ def load_data(numero):
 
  return dados
 
-data_load_state = st.spinner('Atualizando banco de dados')
+prg = st.progress(0) 
+  
+for i in range(100): 
+    time.sleep(0.1) 
+    prg.progress(i+1) 
+
 dados = load_data('38762')
-data_load_state.success("Banco de dados atualizado!")
+st.success("Banco de dados atualizado!")
 
 col1, col2 = st.columns([1,3])
 
