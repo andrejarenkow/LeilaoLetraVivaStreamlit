@@ -12,7 +12,7 @@ import time
 
  
 # Configurações da página
-st.set_page_config
+st.set_page_config(
     page_title="Leilão LetraViva",
     page_icon="	:book:",
     layout="wide",
