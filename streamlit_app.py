@@ -164,7 +164,7 @@ st.success("Banco de dados atualizado!")
 col1, col2 = st.columns([1,3])
 
 with col2:
-    st.dataframe(dados[['imagem','lances','preço','visitas', 'links', 'lote vendido' ]],
+    st.dataframe(dados[['imagem','lances','preço','visitas', 'links']],
                  use_container_width=True,
                  height=600,
                 column_config={
