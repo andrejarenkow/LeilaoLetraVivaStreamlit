@@ -12,7 +12,7 @@ import time
 
  
 # Configurações da página
-st.set_page_config(
+st.set_page_config
     page_title="Leilão LetraViva",
     page_icon="	:book:",
     layout="wide",
@@ -32,7 +32,7 @@ col2.caption('https://www.letravivaleiloes.com.br/leilao.asp?Num=38762')
 #    if submitted:
 
 #criando as listas que serão os Datasets
-@st.cache_data
+@st.cache_data(ttl=600)
 def load_data(numero):
  precos = []
  descricoes = []
