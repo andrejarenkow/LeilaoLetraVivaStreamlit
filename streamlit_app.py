@@ -151,7 +151,7 @@ def load_data(numero):
 
  return dados
 
-data_load_state = st.text('Atualizando banco de dados')
+data_load_state = st.spinner('Atualizando banco de dados')
 dados = load_data('38762')
 data_load_state.success("Banco de dados atualizado!")
 
