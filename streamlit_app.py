@@ -8,6 +8,7 @@ import streamlit as st
 import matplotlib
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import time
 
  
 # Configurações da página
