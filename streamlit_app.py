@@ -149,7 +149,7 @@ def load_data(numero):
  dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
  dados['valor_vendido'] = dados['lancado']*dados['preço']
 
-return dados
+ return dados
 
 data_load_state = st.text('Atualizando banco de dados')
 dados = load_data('38762')
