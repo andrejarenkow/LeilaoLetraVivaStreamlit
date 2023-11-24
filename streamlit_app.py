@@ -241,7 +241,7 @@ with col2:
                 ),
                   'interessados':st.column_config.NumberColumn(
                   'Interessados',
-                  width='small'
+                  width='small')
                 })
 
 with col1:
