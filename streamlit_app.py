@@ -9,7 +9,13 @@ import matplotlib
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import time
-
+import plotly.figure_factory as ff
+import plotly.express as px
+from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
+from urllib.request import urlopen, Request
+from urllib.parse import urlencode
  
 # Configurações da página
 st.set_page_config(
@@ -149,6 +155,47 @@ def load_data(numero):
  dados['lances'] = dados['lances'].astype(int)
  dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
  dados['valor_vendido'] = dados['lancado']*dados['preço']
+ dados['id'] = dados['links'].apply(lambda x: x.split('ID=')[1].split('&')[0])
+
+ def busca_historico_lances(id_peca):
+  url = 'https://www.letravivaleiloes.com.br/ajax/le_historico_peca.asp'
+  data = {"id":id_peca}
+  r = urlopen(Request(url, data=urlencode(data).encode()))
+  html = r.read().decode('utf-8', 'ignore')
+  soup = BeautifulSoup(html, 'html.parser')
+
+  try:
+    data_ultima = soup.find('span').get_text()
+
+  except:
+    data_ultima = '-'
+    
+  try:
+    interessados = soup.get_text().split()[0].split('|')[1]
+  
+  except:
+    interessados = 0
+    
+  lance_automatico = 'AUTOMATICO' in soup.get_text()
+
+
+  return lance_automatico, interessados, data_ultima
+ 
+ automatico = []
+ interessados = []
+ data_ultima = []
+
+ for i in dados['id']:
+        print(i)
+        valores = busca_historico_lances(i)
+        automatico.append(valores[0])
+        interessados.append(int(valores[1]))
+        data_ultima.append(valores[2])
+
+ dados['automatico'] = automatico
+ dados['interessados'] = interessados
+ dados['data_ultima'] = data_ultima
+  
 
  return dados
 
@@ -161,10 +208,12 @@ for i in range(100):
 dados = load_data('38762')
 st.success("Banco de dados atualizado!")
 
+
+
 col1, col2 = st.columns([1,3])
 
 with col2:
-    st.dataframe(dados[['imagem','lances','preço','visitas', 'links']],
+    st.dataframe(dados[['imagem','lances','data_ultima','interessados','automatico','preço','visitas','links']],
                  use_container_width=True,
                  height=600,
                 column_config={
@@ -184,19 +233,27 @@ with col2:
                 })
 
 with col1:
-  st.metric('Valor base', f'R$ {dados["preço"].sum():,.2f}')
+  #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
 
   st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}')
 
   st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
 
-  st.metric('Visitas total', dados['visitas'].sum())
+  st.metric('Total de Visitas', dados['visitas'].sum())
 
-  st.metric('Lances total', dados['lances'].sum())
+  st.metric('Total de LAnces', dados['lances'].sum())
+
+  st.metric('Itens com lances', f"{(dados['lancado'].sum()/len(dados['lancado'])*100).round(1)} %")
 
 
 
-  #Gerando arquivo CSS para customizar
+
+
+
+
+
+
+
 css='''
 [data-testid="stMetric"] {
 
