@@ -233,6 +233,7 @@ with col2:
                 ),
                  "data_ultima": st.column_config.DatetimeColumn(
                  "Data Último Lance",
+                  format='DD/MM/YYYY',
                  )
                 })
 
