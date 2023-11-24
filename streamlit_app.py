@@ -206,6 +206,7 @@ for i in range(100):
     prg.progress(i+1) 
 
 dados = load_data('38762')
+dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
 st.success("Banco de dados atualizado!")
 
 
