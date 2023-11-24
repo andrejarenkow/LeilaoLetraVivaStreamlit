@@ -232,6 +232,7 @@ with col2:
                 ),
                  "data_ultima": st.column_config.DatetimeColumn(
                  "Data Último Lance",
+                 )
                 })
 
 with col1:
