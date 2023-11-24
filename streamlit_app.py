@@ -229,7 +229,9 @@ with col2:
                   'Preço',
                   format="R$%.2f",
                   width='small'
-                )
+                ),
+                 "data_ultima": st.column_config.DatetimeColumn(
+                 "Data Último Lance",
                 })
 
 with col1:
