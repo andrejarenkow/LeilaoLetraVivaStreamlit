@@ -156,7 +156,7 @@ def load_data(numero):
  dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
  dados['valor_vendido'] = dados['lancado']*dados['preço']
  dados['id'] = dados['links'].apply(lambda x: x.split('ID=')[1].split('&')[0])
-  dados.sort_values([ 'valor_vendido' ], ascending=False, inplace=True)
+ dados.sort_values([ 'valor_vendido' ], ascending=False, inplace=True)
 
  def busca_historico_lances(id_peca):
   url = 'https://www.letravivaleiloes.com.br/ajax/le_historico_peca.asp'
