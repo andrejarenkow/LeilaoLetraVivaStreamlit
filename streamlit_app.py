@@ -214,7 +214,7 @@ st.success("Banco de dados atualizado!")
 col1, col2 = st.columns([1,4])
 
 with col2:
-    st.dataframe(dados[['imagem','preço','interessados','lances','data_ultima','automatico','visitas','links']],
+    st.dataframe(dados[['imagem','preço','lances','visitas','links']],
                  use_container_width=True,
                  height=600,
                 column_config={
@@ -231,17 +231,10 @@ with col2:
                   format="R$%.2f",
                   width='small'
                 ),
-                 "data_ultima": st.column_config.DatetimeColumn(
-                 "Data Último Lance",
-                  format='DD/MM/YYYY',
-                 ),
                   'lances':st.column_config.NumberColumn(
                   'Lances',
                   width='small'
                 ),
-                  'interessados':st.column_config.NumberColumn(
-                  'Interessados',
-                  width='small')
                 })
 
 with col1:
