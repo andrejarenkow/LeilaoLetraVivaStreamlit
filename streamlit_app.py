@@ -181,16 +181,16 @@ def load_data(numero):
 
   return lance_automatico, interessados, data_ultima
  
- automatico = []
- interessados = []
- data_ultima = []
+ automatico = '-'
+ interessados = '-'
+ data_ultima = '-'
 
- for i in dados['id']:
-        print(i)
-        valores = busca_historico_lances(i)
-        automatico.append(valores[0])
-        interessados.append(int(valores[1]))
-        data_ultima.append(valores[2])
+ #for i in dados['id']:
+ #       print(i)
+ #       valores = busca_historico_lances(i)
+ #       automatico.append(valores[0])
+ #       interessados.append(int(valores[1]))
+ #       data_ultima.append(valores[2])
 
  dados['automatico'] = automatico
  dados['interessados'] = interessados
