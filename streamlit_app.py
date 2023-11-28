@@ -149,7 +149,7 @@ def load_data(numero):
  dados['preço'] = dados['preço'].replace(r'^\s*$', np.nan, regex=True)
  dados['lote vendido'] = dados['lote vendido'].replace('None', np.nan, regex=True)
  dados = dados[dados['preço']>0].reset_index(drop=True)
- dados.sort_values(['lances', 'preço', 'visitas', ], ascending=False, inplace=True)
+ dados.sort_values([ 'preço','lances', 'visitas', ], ascending=False, inplace=True)
  dados = dados.set_index('descrição')
  dados['valor_vendido'] = dados['lote vendido']*dados['preço']
  dados['lances'] = dados['lances'].astype(int)
