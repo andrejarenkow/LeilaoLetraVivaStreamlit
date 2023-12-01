@@ -252,7 +252,7 @@ historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 
 
 with col2:
-  fig = px.line(historico_limpo, x='data', y='somatorio')
+  fig = px.line(historico_limpo, x='data', y='somatorio', markers=True, text='somatorio')
   st.plotly_chart(fig, use_container_width=True)
 
 
