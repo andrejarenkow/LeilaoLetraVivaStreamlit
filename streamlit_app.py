@@ -212,21 +212,13 @@ st.success("Banco de dados atualizado!")
 
 
 
-col1, col2 = st.columns([1,4])
+col1, col2, col3 = st.columns([1,2,2])
 
-with col2:
-    st.dataframe(dados[['imagem','preço','lances','visitas','links']],
+with col3:
+    st.dataframe(dados[['preço','lances','visitas']],
                  use_container_width=True,
                  height=600,
                 column_config={
-                'links':st.column_config.LinkColumn(
-                    'Link',
-                    width='medium'
-                ),
-                'imagem':st.column_config.ImageColumn(
-                  'Imagem',
-                  width='small'
-                ), 
                 'preço':st.column_config.NumberColumn(
                   'Preço',
                   format="R$%.2f",
@@ -252,7 +244,15 @@ with col1:
   st.metric('Itens com lances', f"{(dados['lancado'].sum()/len(dados['lancado'])*100).round(1)} %")
 
 
+total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
+historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
+historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
+historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 
+
+with col2:
+  fig = px.line(historico_limpo, x='data', y='somatorio')
+  st.plotly_chart(fig, use_container_width=True)
 
 
 
