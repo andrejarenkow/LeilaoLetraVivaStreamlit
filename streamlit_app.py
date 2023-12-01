@@ -215,7 +215,7 @@ st.success("Banco de dados atualizado!")
 col1, col2, col3 = st.columns([1,2,3])
 
 with col3:
-    st.dataframe(dados[['preço','lances','visitas']],hide_index=True,
+    st.dataframe(dados[['descrição','preço','lances','visitas']],hide_index=True,
                  use_container_width=True,
                  height=600,
                 column_config={
@@ -252,7 +252,12 @@ historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 
 
 with col2:
-  fig = px.line(historico_limpo, x='data', y='somatorio', markers=True, text='somatorio')
+  fig = px.line(historico_limpo, x='data', y='somatorio', markers=True)
+  # Set x-axis title
+  fig.update_xaxes(title_text="Data")
+  
+  # Set y-axes titles
+  fig.update_yaxes(title_text="Venda total")
   st.plotly_chart(fig, use_container_width=True)
 
 
