@@ -252,7 +252,7 @@ historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 
 
 with col2:
-  fig = px.line(historico_limpo, x='data', y='somatorio', markers=True)
+  fig = px.line(historico_limpo, x='data', y='somatorio', markers=True, title="Histórico do valor total de vendas")
   # Set x-axis title
   fig.update_xaxes(title_text="Data")
   
