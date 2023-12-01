@@ -236,7 +236,7 @@ with col1:
 
   st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}')
 
-  st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
+  #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
 
   st.metric('Total de Visitas', dados['visitas'].sum())
 
