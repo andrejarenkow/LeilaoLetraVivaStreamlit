@@ -150,7 +150,7 @@ def load_data(numero):
  dados['lote vendido'] = dados['lote vendido'].replace('None', np.nan, regex=True)
  dados = dados[dados['preço']>0].reset_index(drop=True)
 
- dados = dados.set_index('descrição')
+ #dados = dados.set_index('descrição')
  dados['valor_vendido'] = dados['lote vendido']*dados['preço']
  dados['lances'] = dados['lances'].astype(int)
  dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
@@ -212,13 +212,14 @@ st.success("Banco de dados atualizado!")
 
 
 
-col1, col2, col3 = st.columns([1,2,2])
+col1, col2, col3 = st.columns([1,2,3])
 
 with col3:
-    st.dataframe(dados[['preço','lances','visitas']],
+    st.dataframe(dados[['preço','lances','visitas']],hide_index=True,
                  use_container_width=True,
                  height=600,
                 column_config={
+                'descrição':st.column_config.TextColumn(width='medium'),
                 'preço':st.column_config.NumberColumn(
                   'Preço',
                   format="R$%.2f",
