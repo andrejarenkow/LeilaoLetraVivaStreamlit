@@ -238,9 +238,8 @@ historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', 
 historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 historico_limpo['data'] = pd.to_datetime(historico_limpo['data'])
 ontem = datetime.datetime.today() - datetime.timedelta(days=1)
-#valor_vendido_ontem = historico_limpo[historico_limpo['data']==(datetime.today()-1)]['somatorio'].values[0]
-#valor_vendido_ontem = datetime.today().strftime('%Y-%m-%d')
-ontem
+valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
+valor_vendido_ontem
 
 with col1:
   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
