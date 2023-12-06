@@ -231,10 +231,16 @@ with col3:
                 ),
                 })
 
+total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
+historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
+historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
+historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
+
+
 with col1:
   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
 
-  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}')
+  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = )
 
   #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
 
@@ -245,10 +251,7 @@ with col1:
   st.metric('Itens com lances', f"{(dados['lancado'].sum()/len(dados['lancado'])*100).round(1)} %")
 
 
-total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
-historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
-historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
-historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
+
 
 
 with col2:
@@ -263,7 +266,7 @@ with col2:
 
 
 
-
+historico_limpo
 
 
 css='''
