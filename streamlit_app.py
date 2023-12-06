@@ -236,8 +236,8 @@ total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/
 historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
 historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
 historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
-historico_limpo['data'] = pd.to_datetime(historico_limpo['data'])
-ontem = datetime.datetime.today() - datetime.timedelta(days=1)
+historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
+ontem = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime(formato)
 valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
 valor_vendido_ontem
 
