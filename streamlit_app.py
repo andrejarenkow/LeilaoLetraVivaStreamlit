@@ -39,7 +39,7 @@ col2.caption('https://www.letravivaleiloes.com.br/leilao.asp?Num=38762')
 #    if submitted:
 
 #criando as listas que serão os Datasets
-@st.cache_data(ttl=600)
+@st.cache_data(ttl=60)
 def load_data(numero):
  precos = []
  descricoes = []
