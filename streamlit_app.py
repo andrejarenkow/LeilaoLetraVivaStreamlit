@@ -239,12 +239,12 @@ historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
 ontem = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
 valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
-valor_vendido_ontem
+
 
 with col1:
   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
 
-  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = 10)
+  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
 
   #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
 
@@ -256,8 +256,6 @@ with col1:
 
 
 
-
-
 with col2:
   fig = px.line(historico_limpo, x='data', y='somatorio', markers=True, title="Histórico do valor total de vendas")
   # Set x-axis title
@@ -266,11 +264,6 @@ with col2:
   # Set y-axes titles
   fig.update_yaxes(title_text="Venda total")
   st.plotly_chart(fig, use_container_width=True)
-
-
-
-
-historico_limpo
 
 
 css='''
