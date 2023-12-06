@@ -211,13 +211,10 @@ dados = load_data('38762')
 dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
 st.success("Banco de dados atualizado!")
 
-aba_painel, aba_sobre = st.tab(2)
 
-with aba_painel:
-
- col1, col2, col3 = st.columns([1,2,3])
+col1, col2, col3 = st.columns([1,2,3])
  
- with col3:
+with col3:
      st.dataframe(dados[['descrição','preço','lances','visitas']],hide_index=True,
                   use_container_width=True,
                   height=600,
@@ -234,16 +231,16 @@ with aba_painel:
                  ),
                  })
  
- total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
- historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
- historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
- historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
- historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
- ontem = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
- valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
+total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
+historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
+historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
+historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
+historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
+ontem = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
  
  
- with col1:
+with col1:
    #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
  
    st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
@@ -258,7 +255,7 @@ with aba_painel:
  
  
  
- with col2:
+with col2:
    fig = px.line(historico_limpo, x='data', y='somatorio', markers=True, title="Histórico do valor total de vendas")
    # Set x-axis title
    fig.update_xaxes(title_text="Data")
@@ -267,8 +264,7 @@ with aba_painel:
    fig.update_yaxes(title_text="Venda total")
    st.plotly_chart(fig, use_container_width=True)
 
-with aba_sobre:
- st.write('testeeee')
+
 
 css='''
 [data-testid="stMetric"] {
