@@ -16,6 +16,7 @@ import pandas as pd
 import numpy as np
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
+from datetime import datetime
  
 # Configurações da página
 st.set_page_config(
@@ -235,7 +236,8 @@ total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/
 historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
 historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
 historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
-
+valor_vendido_ontem = historico_limpo[historico_limpo['data']==datetime.today()]['somatorio'].values[0]
+valor_vendido_ontem
 
 with col1:
   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
