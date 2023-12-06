@@ -240,7 +240,7 @@ historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 with col1:
   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
 
-  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = )
+  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}', delta = 10)
 
   #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
 
