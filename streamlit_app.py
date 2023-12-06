@@ -217,11 +217,9 @@ col1, col2, col3 = st.columns([1,2,3])
 
 with col3:
     st.dataframe(dados[['descrição','preço','lances','visitas']].style.background_gradient(cmap='RdYlGn_r',
-                                                       subset=['preço'],
-                                                       vmin=0,
-                                                       vmax=dados['preço'].max) \
-                 .background_gradient(cmap='RdYlGn_r', subset=['lances'], vmin=0, vmax=dados['lances'].max)\
-                  .background_gradient(cmap='RdYlGn_r', subset=['visitas'], vmin=0, vmax=dados['visitas'].max)
+                                                       subset=['preço']) \
+                 .background_gradient(cmap='RdYlGn_r', subset=['lances'])\
+                  .background_gradient(cmap='RdYlGn_r', subset=['visitas'])
                  ,hide_index=True,
                  use_container_width=True,
                  height=600,
