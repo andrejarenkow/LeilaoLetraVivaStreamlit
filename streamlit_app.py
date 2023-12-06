@@ -216,10 +216,8 @@ st.success("Banco de dados atualizado!")
 col1, col2, col3 = st.columns([1,2,3])
 
 with col3:
-    st.dataframe(dados[['descrição','preço','lances','visitas']].style.background_gradient(cmap='RdYlGn_r',
-                                                       subset=['preço']) \
-                 .background_gradient(cmap='RdYlGn_r', subset=['lances'])\
-                  .background_gradient(cmap='RdYlGn_r', subset=['visitas'])
+    st.dataframe(dados[['descrição','preço','lances','visitas']].style.background_gradient(cmap='RdYlGn', subset=['lances'])\
+                  .background_gradient(cmap='RdYlGn', subset=['visitas'])
                  ,hide_index=True,
                  use_container_width=True,
                  height=600,
