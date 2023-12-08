@@ -152,7 +152,7 @@ def load_data(numero):
  dados = dados[dados['preço']>0].reset_index(drop=True)
 
  #dados = dados.set_index('descrição')
- dados['valor_vendido'] = dados['lote vendido']*dados['preço']
+ #dados['valor_vendido'] = dados['lote vendido']*dados['preço']
  dados['lances'] = dados['lances'].astype(int)
  dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
  dados['valor_vendido'] = dados['lancado']*dados['preço']
