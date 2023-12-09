@@ -256,7 +256,7 @@ with col1:
  
    st.metric('Total de Lances', dados['lances'].sum())
  
-   st.metric('Itens com lances', f"{(dados['lancado'].sum()/len(dados['lancado'])*100).round(1)} %")
+   st.metric('Itens com lances', f"{((dados['lances']>o).sum()/len(dados['lancado'])*100).round(1)} %")
  
  
  
