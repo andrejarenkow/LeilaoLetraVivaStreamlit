@@ -232,7 +232,7 @@ with col3:
                  })
  
 total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
-historico_limpo= total_historico_valores.drop_duplicates(subset=['peca','data'], keep='first')
+historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
 historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
 historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
 historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
@@ -267,7 +267,7 @@ with col2:
    
    # Set y-axes titles
    fig.update_yaxes(title_text="Venda total")
-   st.plotly_chart(fig, use_container_width=True)
+   #st.plotly_chart(fig, use_container_width=True)
 
 
 
