@@ -261,7 +261,7 @@ with col1:
  
  
 with col2:
-   fig = px.line(historico_limpo, x='data', y='valor', title="Histórico do valor total de vendas", markers=True)
+   fig = px.line(historico_limpo, x='data', y='somatorio', title="Histórico do valor total de vendas", markers=True)
    # Set x-axis title
    fig.update_xaxes(title_text="Data")
    
