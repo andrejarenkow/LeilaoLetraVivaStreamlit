@@ -243,7 +243,7 @@ try:
 
 except:
  ontem = (datetime.datetime.today() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
- valor_vendido_ontem = historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
+ valor_vendido_ontem = 0#historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
  
 with col1:
    #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
