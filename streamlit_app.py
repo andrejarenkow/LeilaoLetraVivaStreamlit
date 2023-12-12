@@ -208,7 +208,7 @@ def load_data(numero):
 #    prg.progress(i+1) 
 
 dados = pd.read_table('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=570146983&single=true&output=tsv')
-dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
+#dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
 #st.success("Banco de dados atualizado!")
 
 
