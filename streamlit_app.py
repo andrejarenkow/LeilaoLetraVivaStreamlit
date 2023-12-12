@@ -249,19 +249,20 @@ try:
 except:
  ontem = (datetime.datetime.today() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
  valor_vendido_ontem = 0#historico_limpo[historico_limpo['data']==ontem]['somatorio'].values[0]
+
+leilao_dia_1 = 166987-109694
+leilao_dia_2 = 232594 - 166987
  
 with col1:
-   #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
-
-   st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}',)# delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
- 
-   #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
- 
-   st.metric('Total de Visitas', dados['visitas'].sum())
- 
-   st.metric('Total de Lances', dados['lances'].sum())
- 
-   st.metric('Itens com lances', f"{((dados['lances']>0).sum()/len(dados['lancado'])*100).round(1)} %")
+ container = st.container(borders=True)
+ with container:
+  st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}',)# delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
+  st.metric('Dia 1', f'R$ {leilao_dia_1:,.2f}')
+  st.metric('Dia 2', f'R$ {leilao_dia_2:,.2f}')
+  st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
+  st.metric('Total de Visitas', dados['visitas'].sum())
+  st.metric('Total de Lances', dados['lances'].sum())
+  st.metric('Itens com lances', f"{((dados['lances']>0).sum()/len(dados['lancado'])*100).round(1)} %")
  
  
  
@@ -276,29 +277,4 @@ with col2:
 
 
 
-css='''
-[data-testid="stMetric"] {
 
-    margin: auto;
-    background-color: #EEEEEE;
-    border: 2px solid #CCCCCC;
-    border-radius: 15px;
-}
-
-[data-testid="stMetric"] > div {
-    width: fit-content;
-    margin: auto;
-}
-
-[data-testid="stMetricLabel"] {
-    width: fit-content;
-    margin: auto;
-}
-
-[data-testid="StyledLinkIconContainer"] > div {
-    width: fit-content;
-    margin: auto;
-}
-
-'''
-st.markdown(f'<style>{css}</style>',unsafe_allow_html=True)
