@@ -201,15 +201,15 @@ def load_data(numero):
 
  return dados
 
-prg = st.progress(0) 
+#prg = st.progress(0) 
   
-for i in range(100): 
-    time.sleep(0.1) 
-    prg.progress(i+1) 
+#for i in range(100): 
+#    time.sleep(0.1) 
+#    prg.progress(i+1) 
 
-dados = load_data('38762')
+dados = pd.read_table('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=570146983&single=true&output=tsv')
 dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
-st.success("Banco de dados atualizado!")
+#st.success("Banco de dados atualizado!")
 
 
 col1, col2, col3 = st.columns([1,2,3])
