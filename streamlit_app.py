@@ -236,6 +236,7 @@ with col3:
                  ),
                  })
  
+total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
 dados_historico = pd.pivot_table(total_historico_valores, index='peca', columns='data', values='valor', aggfunc='max')
 dados_historico = dados_historico.T.ffill().fillna(0)
 dados_historico['somatorio'] = dados_historico.sum(axis=1)
