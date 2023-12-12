@@ -252,8 +252,7 @@ except:
  
 with col1:
    #st.metric('Potencial', f'R$ {dados["preço"].sum():,.2f}')
-   dados
- 
+
    st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}',)# delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
  
    #st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
