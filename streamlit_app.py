@@ -260,8 +260,8 @@ with col1:
   st.metric('Dia 1', f'R$ {leilao_dia_1:,.2f}')
   st.metric('Dia 2', f'R$ {leilao_dia_2:,.2f}')
   st.metric('Valor Comissão', f'R$ {dados["valor_vendido"].sum()*0.05:,.2f}')
-  st.metric('Total de Visitas', dados['visitas'].sum())
-  st.metric('Total de Lances', dados['lances'].sum())
+  #st.metric('Total de Visitas', dados['visitas'].sum())
+  #st.metric('Total de Lances', dados['lances'].sum())
   st.metric('Itens com lances', f"{((dados['lances']>0).sum()/len(dados['lancado'])*100).round(1)} %")
  
  
