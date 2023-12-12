@@ -208,6 +208,11 @@ def load_data(numero):
 #    prg.progress(i+1) 
 
 dados = pd.read_table('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=570146983&single=true&output=tsv')
+dados['lances'] = dados['lances'].astype(int)
+dados['lancado'] = dados['lances'].apply(lambda x: 1 if x > 0 else 0)
+dados['valor_vendido'] = dados['lancado']*dados['preço']
+dados['id'] = dados['links'].apply(lambda x: x.split('ID=')[1].split('&')[0])
+dados.sort_values([ 'valor_vendido' ], ascending=False, inplace=True)
 #dados['data_ultima'] = pd.to_datetime(dados['data_ultima'], errors='coerce', dayfirst=True)
 #st.success("Banco de dados atualizado!")
 
