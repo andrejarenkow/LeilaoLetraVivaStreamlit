@@ -236,11 +236,10 @@ with col3:
                  ),
                  })
  
-total_historico_valores = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQWwT_7xvVyE_Yu1UeBfBKm8eq-biwQ0toD94DFAwPA0cvX-HBq6SajnyEIJRkujHiQTEiiHR_Q34kq/pub?gid=0&single=true&output=csv')
-historico_limpo= total_historico_valores.drop_duplicates(subset=['peca'], keep='first')
-historico_limpo = pd.pivot_table(historico_limpo, index='data', values='valor', aggfunc='sum').reset_index()
-historico_limpo['somatorio'] = historico_limpo['valor'].cumsum()
-historico_limpo['data'] = pd.to_datetime(historico_limpo['data']).dt.strftime('%Y-%m-%d')
+dados_historico = pd.pivot_table(total_historico_valores, index='peca', columns='data', values='valor', aggfunc='max')
+dados_historico = dados_historico.T.ffill().fillna(0)
+dados_historico['somatorio'] = dados_historico.sum(axis=1)
+dados_historico = dados_historico.reset_index()
 
 try:
  ontem = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
@@ -266,7 +265,7 @@ with col1:
  
  
 with col2:
-   fig = px.line(historico_limpo, x='data', y='somatorio', title="Histórico do valor total de vendas", markers=True)
+   fig = px.line(dados_historico, x='data', y='somatorio', title="Histórico do valor total de vendas", markers=True)
    # Set x-axis title
    fig.update_xaxes(title_text="Data")
    
