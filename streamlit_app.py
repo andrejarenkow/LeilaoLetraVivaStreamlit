@@ -254,7 +254,7 @@ leilao_dia_1 = 166987-109694
 leilao_dia_2 = 232594 - 166987
  
 with col1:
- container = st.container(borders=True)
+ container = st.container(border=True)
  with container:
   st.metric('Valor vendido', f'R$ {dados["valor_vendido"].sum():,.2f}',)# delta = f'R$ {dados["valor_vendido"].sum()-valor_vendido_ontem:,.2f} em relação a ontem')
   st.metric('Dia 1', f'R$ {leilao_dia_1:,.2f}')
