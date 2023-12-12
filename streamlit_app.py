@@ -220,11 +220,13 @@ dados.sort_values([ 'valor_vendido' ], ascending=False, inplace=True)
 col1, col2, col3 = st.columns([1,2,3])
  
 with col3:
-     st.dataframe(dados[['descrição','preço','lances','visitas']],hide_index=True,
+     st.dataframe(dados[['imagem','descrição','preço','lances','visitas','link']],hide_index=True,
                   use_container_width=True,
                   height=600,
                  column_config={
                  'descrição':st.column_config.TextColumn(width='medium'),
+                 'imagem':st.column_config.ImageColumn(),
+                 'links':st.column_config.LinkColumn(),
                  'preço':st.column_config.NumberColumn(
                    'Preço',
                    format="R$%.2f",
